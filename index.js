@@ -27,39 +27,32 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
+//app.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
 app.all('/player/register', function(req, res) {
     res.send("Coming soon...");
 });
 app.all('/player/login/dashboard', function (req, res) {
-    /*const tData = {};
+    const tData = {};
     try {
         const uData = JSON.stringify(req.body).split('"')[1].split('\\n'); const uName = uData[0].split('|'); const uPass = uData[1].split('|');
         for (let i = 0; i < uData.length - 1; i++) { const d = uData[i].split('|'); tData[d[0]] = d[1]; }
         if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
     } catch (why) { console.log(`Warning: ${why}`); }
 
-    res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});*/
-    res.redirect('/player/growid/login/validate');
+    res.render(__dirname + '/public/html/dashboard.ejs', {data: tData});
 });
 
 app.all('/player/growid/login/validate', (req, res) => {
-    const token = Buffer.from(
-        `_token=&growId=&password=`,
-    ).toString('base64');
-   
+    const growId = req.body.growId;
+    const pass = req.body.password;
+    const _token = req.body._token;
+    const token = `_token=${_token}&growId=${growId}&password=${password}`;
     res.send(
         `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia"}`,
     );
 });
 app.all('/player/growid/checktoken', (req, res) => {
     const { refreshToken } = req.body;
-    try {
-    const decoded = Buffer.from(refreshToken, 'base64').toString('utf-8');
-    if (typeof decoded !== 'string' && !decoded.startsWith('growId=') && !decoded.includes('password=')) {
-        res.redirect('/player/login/growid/validate');
-        return;
-    }
     res.json({
         status: 'success',
         message: 'Account Validated.',
@@ -67,10 +60,6 @@ app.all('/player/growid/checktoken', (req, res) => {
         url: '',
         accountType: 'growtopia',
     });
-    } catch (error) {
-        console.log("Redirecting to player login dashboard");
-        res.redirect('/player/login/growid/validate');
-    }
 });
 app.get('/', function (req, res) {
    res.send('Hello Memek');
