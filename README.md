@@ -16,7 +16,7 @@ Tutorial:
   
 ## Contact
 
-You can contact me at teleram my username is [@ReallBoyy](https://t.me/reallboyy2_4).
+You can contact me at teleram my username is [@ReallBoyy](https://t.me/reallboyy2_4) or ask the real owner [@yoruakio](https://t.me/yoruakio).
 
 ## License
 
