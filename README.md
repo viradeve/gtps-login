@@ -16,7 +16,7 @@ Tutorial:
   
 ## Contact
 
-You can contact me at teleram my username is [@ReallBoyy](https://t.me/reallboyy2_4) or join my discord server.
+You can contact me at teleram my username is [@ReallBoyy](https://t.me/reallboyy2_4).
 
 ## License
 
